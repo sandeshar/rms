@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FiHome, FiFileText, FiList, FiTag, FiChevronDown, FiUser, FiCodepen } from "react-icons/fi";
+import { Button } from "@/components/ui/button";
 
 const navItems = [
     { label: "Dashboard", href: "/admin", icon: FiHome },
@@ -33,14 +34,16 @@ const Sidebar = () => {
                     {!collapsed && <span className="font-semibold">Admin</span>}
                 </div>
 
-                <button
+                <Button
+                    variant="ghost"
+                    size="icon"
                     aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
                     aria-expanded={!collapsed}
                     onClick={() => setCollapsed((s) => !s)}
-                    className="p-1 rounded hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                    className="p-1"
                 >
-                    <FiChevronDown className={`transform transition-transform duration-200 rotate-90 fill-white ${collapsed ? "rotate-270" : ""}`} size={20} />
-                </button>
+                    <FiChevronDown className={`transform transition-transform duration-200 rotate-90 ${collapsed ? "rotate-270" : ""}`} size={18} />
+                </Button>
             </div>
 
             <nav className="flex-1 overflow-auto">
@@ -64,14 +67,14 @@ const Sidebar = () => {
             </nav>
 
             <div className="px-3 py-2 border-t border-neutral-200 dark:border-neutral-800">
-                <button
+                <Button
+                    variant="ghost"
+                    className={`w-full ${collapsed ? "justify-center" : "justify-start"} flex items-center gap-3 rounded-md px-3 py-2 text-sm text-neutral-700 dark:text-neutral-200`}
                     onClick={() => alert("User actions go here")}
-                    className={`w-full flex items-center gap-3 rounded-md px-3 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors ${collapsed ? "justify-center" : "justify-start"
-                        }`}
                 >
                     <FiUser className="text-neutral-500" size={18} />
                     {!collapsed && <span>Profile</span>}
-                </button>
+                </Button>
             </div>
         </aside>
     );

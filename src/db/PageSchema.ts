@@ -3,9 +3,10 @@ import mongoose from "mongoose";
 const SectionSchema = new mongoose.Schema({
     type: { type: String, required: true },            // Hero, Menu, Offer, Tabbed, etc.
     data: { type: mongoose.Schema.Types.Mixed },       // Flexible content (heading, image, etc.)
-    sections: [this],                                  // Nested sections
     position: { type: Number, default: 0 },           // Ordering
 });
+
+SectionSchema.add({ sections: [SectionSchema] });
 
 const PageSchema = new mongoose.Schema({
     slug: { type: String, required: true, unique: true },  // /home, /about
